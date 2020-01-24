@@ -63,7 +63,7 @@
 
 				saveToCart(cartItem, result.quantity);
 				ionicToast.show('\'' + cartItem.name +
-				'\' foi adicionado no pedido', 'bottom', false, 5000);
+				'\' foi adicionado ao pedido', 'bottom', false, 5000);
 			});
 		}
 
@@ -146,7 +146,6 @@
 		
 			localStorageService.set(dataPedidoKey, $filter('date')(data.pedido.dataPedido, 'yyyy/MM/dd', null));
 			localStorageService.set(notesKey, data.pedido.observacao);
-			
 			_.each(data.listaPedidoProduto, function(item) {
 				saveToCart(item, item.qtdSolicitada);
 			});

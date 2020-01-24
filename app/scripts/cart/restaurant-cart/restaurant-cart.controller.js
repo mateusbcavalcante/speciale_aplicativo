@@ -54,7 +54,6 @@
 
 		function loadItems() {
 			vm.items = restaurantCartService.getAll();
-			calculateTotalAmount();
 		}
 
 		function proceedToPayment() {
@@ -63,22 +62,6 @@
 			} else {
 				ionicToast.show('Pelo menos 1 produto deve ser adicionado ao pedido.', 'bottom', false, 8000);
 			}
-		}
-
-		function flushCart() {
-			restaurantCartService.flush();
-			vm.items = [];
-			calculateTotalAmount();
-		}
-
-		function calculateTotalAmount() {
-			vm.currency = null;
-			var total = 0;
-			_.each(vm.items, function(item) {
-				total += getItemTotal(item);
-				vm.currency = item.currency;
-			});
-			vm.total = total;
 		}
 
 		function getItemTotal(item) {
@@ -92,6 +75,7 @@
 		}
 
 		function changeQuantity(item) {
+			console.log(item);
 			restaurantCartService.changeQuantity(item)
 				.then(loadItems);
 			$ionicListDelegate.closeOptionButtons();
@@ -127,22 +111,21 @@
 				return;
 			}
 
-			return productsService.validarData(localStorageService.get('usuarioAutenticado').idCliente, form.idPedido.$modelValue, form.dataPedido.$modelValue).then(function(data) {
-				if (data.descricao != null && data.descricao != '') {
-					ionicToast.show(data.descricao, 'bottom', false, 5000);
+			return productsService.cadastrarPedido(localStorageService.get('usuarioAutenticado').idCliente,
+															   localStorageService.get('usuarioAutenticado').idUsuario,
+															   form.idPedido.$modelValue,
+															   form.dataPedido.$modelValue,
+															   form.notes.$modelValue,
+															   items).then(function(data) {
+				if (data == null || data == '') {
+					ionicToast.show('Verifique se tem algum pedido para a data informada e horário limite.', 'bottom', false, 8000);
+					return;
 				} else {
-					return productsService.cadastrarPedido(localStorageService.get('usuarioAutenticado').idCliente,
-						                                   localStorageService.get('usuarioAutenticado').idUsuario,
-						                                   form.idPedido.$modelValue,
-						                                   form.dataPedido.$modelValue,
-				                                           form.notes.$modelValue,
-				                                           items).then(function(data) {
-						ionicToast.show('Registro inserido com sucesso. Protocolo: ' + data + '.', 'bottom', false, 8000);
+					ionicToast.show('Registro inserido com sucesso. Protocolo: ' + data + '.', 'bottom', false, 8000);
 
-						restaurantCartService.novoPedido();
-						$state.go('app.home');
-					});
-				}
+					restaurantCartService.novoPedido();
+					$state.go('app.home');
+				}												   
 			});
 		}
 	}

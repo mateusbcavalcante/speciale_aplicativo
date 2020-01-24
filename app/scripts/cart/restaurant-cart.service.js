@@ -79,19 +79,13 @@
 						return lengthCart();
 					}
 
-					return dataService.validar(cartItem.idProduto, result.quantity).then(function(data) {
-						if (data.descricao != null && data.descricao != '') {
-							ionicToast.show(data.descricao, 'bottom', false, 8000);		
-						} else {
-							saveToCart(cartItem, result.quantity);
-							ionicToast.show('O produto ' + cartItem.name + ' foi adicionado no pedido.', 'bottom', false, 5000);
-							return lengthCart();
-						}
-					});
+					saveToCart(cartItem, result.quantity);
+					ionicToast.show('O produto ' + cartItem.name + ' foi adicionado ao pedido.', 'bottom', false, 5000);
+					return lengthCart();
 					
 				});
 			} else {
-				ionicToast.show('O produto ' + cartItem.name + ' já foi adicionado no pedido.', 'bottom', false, 5000);
+				ionicToast.show('O produto ' + cartItem.name + ' já foi adicionado ao pedido.', 'bottom', false, 5000);
 				return lengthCart();
 			}
 		}
@@ -110,14 +104,8 @@
 					return;
 				}
 
-				return dataService.validar(cartItem.idProduto, result.quantity).then(function(data) {	
-					if (data.descricao != null && data.descricao != '') {
-						ionicToast.show(data.descricao, 'bottom', false, 5000);
-					} else {
-						cartItem.quantity = result.quantity;
-						localStorageService.set(restaurantCartKey, cart);			
-					}
-				});
+				cartItem.quantity = result.quantity;
+				localStorageService.set(restaurantCartKey, cart);
 			});
 		}
 
@@ -207,12 +195,14 @@
 
 		function preparaAlterarPedido(data) {
 			flush();
-		
-			localStorageService.set(dataPedidoKey, $filter('date')(data.pedido.dataPedido, 'yyyy/MM/dd', null));
-			localStorageService.set(notesKey, data.pedido.observacao);
+			localStorageService.set(dataPedidoKey, $filter('date')(data.pedido.datPedido, 'yyyy/MM/dd', null));
+			localStorageService.set(notesKey, data.pedido.obsPedido);
 			localStorageService.set(idPedidoKey, data.pedido.idPedido);
 			
 			_.each(data.listaPedidoProduto, function(item) {
+				item.name = item.produto.desProduto;
+				item.qtdLoteMinimo = item.produto.qtdLoteMinimo;
+				item.qtdMultiplo = item.produto.qtdMultiplo;
 				saveToCart(item, item.qtdSolicitada);
 			});
 			showMyCart();
