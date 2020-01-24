@@ -3,7 +3,7 @@
 		<ion-content class="has-extended-footer">
 
 			<div class="row colums-two">
-				<div class="card col home" style="padding: 15px;opacity: 0.7;height: 480px;">
+				<div class="card col home" style="padding: 15px;opacity: 0.7;height: 240px;">
 					<label class="item item-input item-stacked-label">
 						<input type="hidden" ng-model="vm.data.idPedido" name="idPedido" />
 						<span class="input-label">Data da Produção</span>
@@ -15,7 +15,7 @@
 					</label>
 					<label class="item item-input item-stacked-label">
 						<span class="input-label">Observação</span>
-						<textarea rows="14" ng-model="vm.data.notes" name="notes"></textarea>
+						<textarea rows="3" ng-model="vm.data.notes" name="notes"></textarea>
 					</label>
 					<button class="button button-small rounded button-stable"
 						style="margin-top: 5px;float: right;width: 140px;" 
@@ -24,21 +24,20 @@
 					</button>
 				</div>
 			</div>
-			
-			<ion-list can-swipe="true">
-				<ion-item ng-repeat="item in vm.items">
 
-					<p class="text-right"><span class="badge badge-warning">{{item.quantity}}</span></p><br />
-					<h2 class="text-left"><strong>{{item.name}}</strong></h2>
+			<ion-item ng-repeat="item in vm.items" class="card" style="height: 30px;margin-top: auto;">
+				<div ng-click="vm.deleteItem(item)" class="trash" >
+					<i class="ion-trash-a"></i>
+				</div>
 
-					<ion-option-button class="button-balanced" ng-click="vm.changeQuantity(item)">
-						Alterar
-					</ion-option-button>
-					<ion-option-button class="button-assertive" ng-click="vm.deleteItem(item)">
-						Deletar
-					</ion-option-button>
-				</ion-item>
-			</ion-list>
+				<div ng-click="vm.changeQuantity(item)">
+					<h2 class="text-left" style="font-size: unset; margin-top: 6px;">
+						<strong>{{item.name}}</strong>
+					</h2>
+					<span class="badge badge-warning">{{item.quantity}}</span>
+				</div>
+				
+			</ion-item>
 
 			<style>
 				.item-input input,
@@ -56,6 +55,7 @@
 					-webkit-border-radius: 9px;
 					-moz-border-radius: 9px;
 					border-radius: 9px;
+					top: 5px;
 				}
 
 				.badge-warning {

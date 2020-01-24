@@ -1,4 +1,4 @@
-<ion-view view-title="{{vm.category}}">
+<ion-view view-title="Produtos">
 	<ion-nav-buttons side="right">
 		<button class="button button-clear icon ion-ios-cart" ng-click="vm.showCart()">
 			<span class="badge badge-info" style="display: -webkit-inline-box; float: right">{{vm.lengthCart}} </span>
@@ -7,13 +7,13 @@
 
 	<ion-content>
 		<div ng-repeat="p in vm.products" ng-if="$index%2 == 0" class="row colums-two">
-			<div class="card col" ng-click="vm.showProductDetails(vm.products[$index].idProduto)">
+			<div class="cardProduct col" ng-click="vm.showProductDetails(vm.products[$index].idProduto)">
 				<a>
 					<h6 style="text-align: center">{{vm.products[$index].desProduto}}</h6>
 				</a>
 			</div>
 
-			<div ng-style="{'visibility': !!vm.products[$index + 1] ? 'visible' : 'hidden'}" class="card col"
+			<div ng-style="{'visibility': !!vm.products[$index + 1] ? 'visible' : 'hidden'}" class="cardProduct col"
 				ng-click="vm.showProductDetails(vm.products[$index + 1].idProduto)">
 				<a>
 					<h6 style="text-align: center">{{vm.products[$index + 1].desProduto}}</h6>

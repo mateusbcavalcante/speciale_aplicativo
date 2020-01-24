@@ -10,7 +10,6 @@
 	/* @ngInject */
 	function RestaurantCartController($ionicListDelegate, _, restaurantCartService, $state, ionicToast, localStorageService, productsService, $ionicHistory) {
 
-		$ionicHistory.removeBackView();
 		var dataPedidoKey = 'dataPedido';
 		var notesKey = 'notes';
 		var idPedidoKey = 'idPedido';
@@ -110,13 +109,16 @@
 				ionicToast.show('Pelo menos 1 produto deve ser adicionado ao pedido.', 'bottom', false, 8000);
 				return;
 			}
+		
+			var cartRemoved = localStorageService.get('restaurant-cart-removed');
 
 			return productsService.cadastrarPedido(localStorageService.get('usuarioAutenticado').idCliente,
 															   localStorageService.get('usuarioAutenticado').idUsuario,
 															   form.idPedido.$modelValue,
 															   form.dataPedido.$modelValue,
 															   form.notes.$modelValue,
-															   items).then(function(data) {
+															   items,
+															   cartRemoved).then(function(data) {
 				if (data == null || data == '') {
 					ionicToast.show('Verifique se tem algum pedido para a data informada e horário limite.', 'bottom', false, 8000);
 					return;

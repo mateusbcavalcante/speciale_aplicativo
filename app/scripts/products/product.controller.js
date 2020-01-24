@@ -49,7 +49,8 @@
 				name: vm.product.desProduto,
 				idProduto: vm.product.idProduto,
 				qtdLoteMinimo: vm.product.qtdLoteMinimo,
-				qtdMultiplo: vm.product.qtdMultiplo
+				qtdMultiplo: vm.product.qtdMultiplo,
+				flgAtivo: "S"
 			}).then(function(data) {
 				vm.lengthCart = data;
 

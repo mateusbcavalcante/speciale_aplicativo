@@ -7204,7 +7204,7 @@ ion-tabs.tabs-striped.tabs-color-active-dark .tab-item.activated {
   display: -moz-flex;
   display: flex;
   position: absolute;
-  top: 16px;
+  top: 5px;
   right: 32px;
 }
 .item.item-button-right .badge {
@@ -11817,4 +11817,22 @@ p.error-message-card {
   border: 1px solid floralwhite;
   height: 117px;
   opacity: 0.8;
+}
+
+.cardProduct {
+  border-radius: 30px;
+  border: 1px solid floralwhite;
+  opacity: 0.8;
+  background-color: whitesmoke;
+  margin: 5px;
+}
+
+.trash {
+  margin-right: 10px;
+  color: red;
+  width: 15px;
+  text-align: center;
+  top: 3px;
+  float: left;
+  font-size: x-large;
 }

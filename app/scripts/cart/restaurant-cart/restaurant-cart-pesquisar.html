@@ -29,8 +29,12 @@
 			</div>
 
 			<ion-list can-swipe="true">
-				<ion-item ng-repeat="item in vm.items">
-
+				<div style="text-align: center;">
+					<i class="icon ion-information-circled"></i>
+					<span>Arraste para o lado esquerdo para ver as opções</span>
+				</div>
+				
+				<ion-item ng-repeat="item in vm.items" style="margin: 10px">
 					<h2 class="text-left"><strong>Protocolo: {{item.pedido.idPedido}}</strong></h2>
 					<hr>
 					<h3 class="text-left"><strong>Observação: {{item.pedido.obsPedido}}</strong></h3>

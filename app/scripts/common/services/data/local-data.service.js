@@ -173,13 +173,15 @@
             return http_post_form_data('/PedidoWS/getListaProdutoByCliente', 'idCliente=' + clientGuid);
         }
 
-        function cadastrarPedido(idCliente, idUsuario, idPedido, dataPedido, observacao, listaProduto) {
+        function cadastrarPedido(idCliente, idUsuario, idPedido, dataPedido, observacao, listaProduto, listaProdutoRemovido) {
+            console.log(listaProduto);
             return http_post_form_data('/PedidoWS/cadastrar', 'idCliente=' + idCliente
                                                             + '&idUsuario=' + idUsuario
                                                             + '&idPedido=' + idPedido
                                                             + '&data=' + dataPedido
                                                             + '&observacao=' + observacao
-                                                            + '&produtosAdicionadosJson=' + angular.toJson(listaProduto));
+                                                            + '&produtosAdicionadosJson=' + angular.toJson({data:listaProduto})
+                                                            + '&produtosRemovidosJson=' + angular.toJson({data:listaProdutoRemovido}));
         }
 
         function preparaAlterarUltimoPedido(idCliente) {

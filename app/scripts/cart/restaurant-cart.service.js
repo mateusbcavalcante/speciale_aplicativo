@@ -10,10 +10,12 @@
 	/* @ngInject */
 	function restaurantCartService($rootScope, $ionicPopup, $state, _, localStorageService, ionicToast, dataService, $filter) {
 		var restaurantCartKey = 'restaurant-cart';
+		var restaurantCartKeyRemoved = 'restaurant-cart-removed';
 		var dataPedidoKey = 'dataPedido';
 		var notesKey = 'notes';
 		var idPedidoKey = 'idPedido';
 		var cart = localStorageService.get(restaurantCartKey) || [];
+		var cartRemoved = localStorageService.get(restaurantCartKeyRemoved) || [];
 
 		var service = {
 			addToCart: addToCart,
@@ -35,15 +37,25 @@
 		// ********************************************************
 
 		function deleteItem(itemToRemove) {
+			_.each(cart, function(item) {
+				if (item.idProduto == itemToRemove.idProduto) {
+					item.flgAtivo = 'N';
+					cartRemoved.push(item);
+				}
+			});
 			_.remove(cart, function(item) {
 				return item === itemToRemove;
 			});
+
+			localStorageService.set(restaurantCartKeyRemoved, cartRemoved);
 			localStorageService.set(restaurantCartKey, cart);
 		}
 
 		function flush() {
 			cart = [];
+			cartRemoved = [];
 			localStorageService.set(restaurantCartKey, cart);
+			localStorageService.set(restaurantCartKeyRemoved, cartRemoved);
 		}
 
 		function showMyCart() {
@@ -203,6 +215,7 @@
 				item.name = item.produto.desProduto;
 				item.qtdLoteMinimo = item.produto.qtdLoteMinimo;
 				item.qtdMultiplo = item.produto.qtdMultiplo;
+				item.flgAtivo = null;
 				saveToCart(item, item.qtdSolicitada);
 			});
 			showMyCart();

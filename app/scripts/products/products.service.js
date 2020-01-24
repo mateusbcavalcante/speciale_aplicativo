@@ -37,8 +37,8 @@
 			return dataService.getListProductByClient(clientGuid);
 		}
 
-		function cadastrarPedido(idCliente, idUsuario, idPedido, dataPedido, observacao, listaProduto) {
-			return dataService.cadastrarPedido(idCliente, idUsuario, idPedido, dataPedido, observacao, listaProduto);
+		function cadastrarPedido(idCliente, idUsuario, idPedido, dataPedido, observacao, listaProduto, listaProdutoRemovido) {
+			return dataService.cadastrarPedido(idCliente, idUsuario, idPedido, dataPedido, observacao, listaProduto, listaProdutoRemovido);
 		}
 
 		function validarData(idCliente, idPedido, dataPedido) {
