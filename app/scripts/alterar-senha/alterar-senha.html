@@ -1,0 +1,23 @@
+<ion-view view-title="Alterar Senha">
+	<form novalidate name="formulario">
+		<ion-content style="background: url('/images/fundo.png');padding:40px">
+			<ion-list>
+	            <ion-item class="item-input item-stacked-label" style="padding: 20px">
+				   <span class="input-label"><strong>Login:</strong> {{vm.login}}</span> <br /><br />
+				   
+					<ion-item class="form-item">
+				   		<input type="password" placeholder="  Nova Senha" ng-model="vm.senha" name="senha" required style="width: 95%">
+				    </ion-item>
+	                <p ng-show="formulario.senha.$error.required && formulario.senha.$dirty" 
+	                class="error-message">
+	                    O campo Nova Senha é obrigatório
+	                </p>
+	            </ion-item>
+	        </ion-list>
+			<a class="button button-full button-calm button-submit" ng-click="vm.alterar(formulario)">
+				Alterar
+			</a>
+		</ion-content>
+
+	</form>
+</ion-view>

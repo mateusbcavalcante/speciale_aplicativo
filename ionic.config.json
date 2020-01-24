@@ -1,0 +1,10 @@
+{
+  "name": "Speciale",
+  "app_id": "836cd6ac",
+  "proxies": [
+    {
+      "path": "/speciale_app",
+      "proxyUrl": "http://192.168.25.7:8080/spdmws"
+    }
+  ]
+}

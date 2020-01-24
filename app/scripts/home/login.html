@@ -1,0 +1,42 @@
+<ion-view view-title="Login" hide-nav-bar="true">
+    <form novalidate name="formulario">
+        <ion-content style="background: url('/images/fundo.png');padding:40px">
+
+            <div style="width: 100%; text-align: center;">
+                <img ng-src="images/logo-speciale-new.png" alt="" width="100%">
+            </div>
+
+            <div class="form-fields">
+
+                <ion-item class="form-item">
+                    <input type="text" placeholder="Login" ng-model="login" name="login" required style="width: 95%">
+                </ion-item>
+
+                <p ng-show="formulario.login.$error.required && formulario.login.$dirty" class="error-message">
+                    O campo Login é obrigatório
+                </p>
+
+                <ion-item class="form-item">
+                    <input type="password" placeholder="Senha" ng-model="senha" name="senha" required
+                        style="width: 95%">
+                </ion-item>
+
+                <p ng-show="formulario.senha.$error.required && formulario.senha.$dirty" class="error-message">
+                    O campo Senha é obrigatório
+                </p>
+
+            </div>
+
+            <a class="button button-full button-calm button-submit" ng-click="vm.entrar(formulario)">
+                Entrar
+            </a>
+
+            <button class="button button-clear button-stable" style="margin-top: 25px;float: right;" 
+                    ng-click="vm.openRecuperarSenhaModal()">
+                Recuperar Senha
+            </button>
+
+        </ion-content>
+
+    </form>
+</ion-view>

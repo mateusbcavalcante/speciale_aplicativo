@@ -1,0 +1,175 @@
+{
+	"id": 1,
+	"jsonrpc": "2.0",
+	"total": 3,
+	"result": [
+		{
+			"id": 1,
+			"guid": "861d3f45-28ce-4b10-80e5-e98fafee4da3",
+			"thumb": "",
+			"title": "",
+			"body": "",
+			"tags": ["speciali", "paes", "glutem"],
+			"standardOptions":[
+				{
+					"name": "Celery",
+					"selected": true
+				},
+				{
+					"name": "Corn",
+					"selected": true
+				},
+				{
+					"name": "Butter",
+					"selected": true
+				},
+				{
+					"name": "Rice",
+					"selected": true
+				}
+			],
+			"extraOptions": [
+				{
+					"name": "Mayonnaise",
+					"selected": true,
+					"value": "2.10"
+				},
+				{
+					"name": "Lemon sauce",
+					"selected": false,
+					"value": "3.20"
+				}
+			],
+			"price" : [
+			{
+				"name": "Single",
+				"value": "6",
+				"currency": "$"
+			}, {
+				"name": "Double",
+				"value": "11",
+				"currency": "$"
+			}
+			],
+			"pictures": [
+				"images/batata-doce-1.jpg"
+			]
+		}, {
+			"id": 2,
+			"guid": "6630fb89-94d6-4fec-a1c3-c48d80b888b2",
+			"thumb": "",
+			"title": "",
+			"body": "",
+			"tags": ["speciali", "paes", "alimentacao"],
+			"standardOptions":[
+				{
+					"name": "Chicken",
+					"selected": true
+				},
+				{
+					"name": "Chili",
+					"selected": true
+				},
+				{
+					"name": "Paprika",
+					"selected": true
+				},
+				{
+					"name": "Onions",
+					"selected": true
+				}
+			],
+			"price" : [
+			{
+				"name": "Single",
+				"value": "5",
+				"currency": "$"
+			}, {
+				"name": "Double",
+				"value": "7",
+				"currency": "$"
+			}
+			],
+			"pictures": [
+				"images/pao-coco.jpg"
+			]
+		}, {
+			"id": 3,
+			"guid": "861d3f45-28ce-4b10-80e5-e98fafee4dc3",
+			"thumb": "",
+			"title": "",
+			"body": "",
+			"tags": ["speciali", "paes"],
+			"standardOptions":[
+				{
+					"name": "Chocolate syrup",
+					"selected": true
+				}
+			],
+			"extraOptions": [
+				{
+					"name": "Fresh strawberries",
+					"selected": false,
+					"value": "4"
+				},
+				{
+					"name": "Sparkling wine",
+					"selected": false,
+					"value": "7"
+				}
+			],
+			"price" : [
+			{
+				"name": "Small",
+				"value": "7",
+				"currency": "$"
+			}, {
+				"name": "Normal",
+				"value": "9",
+				"currency": "$"
+			}
+			],
+			"pictures": [
+				"images/mix-graos.jpg"
+			]
+		}, {
+			"id": 4,
+			"guid": "4e0d6228-1ffc-46d4-ba68-22454728ddd5",
+			"thumb": "",
+			"title": "",
+			"body": "",
+			"tags": ["speciali", "paes"],
+			"standardOptions":[
+				{
+					"name": "Lemon juice",
+					"selected": true
+				},
+				{
+					"name": "Rice",
+					"selected": false
+				}
+			],
+			"extraOptions": [
+				{
+					"name": "Parsley sauce",
+					"selected": false,
+					"value": "3.10"
+				}
+			],
+			"price" : [
+			{
+				"name": "Standard",
+				"value": "16",
+				"currency": "$"
+			}, {
+				"name": "Large",
+				"value": "18",
+				"currency": "$"
+			}
+			],
+			"pictures": [
+				"images/tranca-prestigio.jpg"
+			]
+		}
+	]
+}

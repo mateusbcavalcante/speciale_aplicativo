@@ -1,0 +1,48 @@
+<ion-view view-title="Início">
+	<ion-nav-buttons side="left">
+		<button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+		</button>
+	</ion-nav-buttons>
+	<ion-nav-buttons side="right">
+		<button class="button button-clear icon ion-android-person" ng-click="vm.openProfile()">
+			{{vm.login | uppercase}}
+		</button>
+	</ion-nav-buttons>
+
+	<ion-content>
+
+		<ion-slide-box>
+			<ion-slide ng-repeat="product in vm.products">
+				<div class="box blue home-hello">
+					<img ng-src="{{product.pictures[0]}}" />
+					<div class="item">
+						<h1 style="font-size:20px;">Speciale - Pães Artesanais</h1> 
+					</div>
+				</div>
+			</ion-slide>
+		</ion-slide-box>
+
+		<div class="logo-home"></div>
+
+		<div style="padding: 20px;">
+			<div class="row colums-two">
+
+				<div class="card col home">
+					<a class="item item-text-wrap" ng-click="vm.showCart()">
+						<h1><i class="ion-compose"></i></h1>
+						<h2>Pedido</h2>
+					</a>
+				</div>
+
+				<div class="card col home">
+					<a class="item item-text-wrap" href="#/app/contact-us">
+						<h1><i class="icon ion-ios-information"></i></h1>
+						<h2>Contato</h2>
+					</a>
+				</div>
+
+			</div>
+		</div>
+
+	</ion-content>
+</ion-view>
