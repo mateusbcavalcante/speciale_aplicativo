@@ -14,15 +14,17 @@
 		var notesKey = 'notes';
 		var idPedidoKey = 'idPedido';
 
-		var dataPedidoStr = localStorageService.get(dataPedidoKey);
 		var dataPedido = null;
+		var dataPedidoStr = localStorageService.get(dataPedidoKey);
 		if (dataPedidoStr != null && dataPedidoStr != '') {
-			dataPedido = new Date(localStorageService.get(dataPedidoKey));
+			dataPedido = new Date(dataPedidoStr);
 		}
 		var notes = localStorageService.get(notesKey);
 		var idPedido = localStorageService.get(idPedidoKey);
 
 		var vm = angular.extend(this, {
+			setObservacao: setObservacao,
+			setDate: setDate,
 			items: [],
 			proceedToPayment: proceedToPayment,
 			changeQuantity: changeQuantity,
@@ -46,6 +48,14 @@
 		})();
 
 		// ********************************************************************
+
+		function setDate() {
+			localStorageService.set(dataPedidoKey, vm.data.dataPedido);
+		}
+
+		function setObservacao() {
+			localStorageService.set(notesKey, vm.data.notes);
+		}
 
 		function showHome() {
 			$state.go('app.home');

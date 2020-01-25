@@ -22,8 +22,6 @@
 			showMyCart: showMyCart,
 			deleteItem: deleteItem,
 			changeQuantity: changeQuantity,
-			inativarUltimoPedido: inativarUltimoPedido,
-			preparaAlterarUltimoPedido: preparaAlterarUltimoPedido,
 			flush: flush,
 			getAll: getAll,
 			pesquisar: pesquisar,
@@ -58,7 +56,7 @@
 			localStorageService.set(restaurantCartKeyRemoved, cartRemoved);
 		}
 
-		function showMyCart() {
+		function showMyCart(data) {
 			$state.go('app.restaurant-cart');
 		}
 
@@ -156,49 +154,6 @@
 			};
 		}
 
-		function inativarUltimoPedido(idUsuario, idCliente) {
-			return dataService.preparaAlterarUltimoPedido(idCliente).then(function(data) {
-				if (data != null && data != '') {
-					return dataService.validarInativar(idCliente, $filter('date')(data.pedido.dataPedido, 'yyyy/MM/dd', null)).then(function(mensagem) {	
-						if (mensagem.descricao != null && mensagem.descricao != '') {
-							ionicToast.show(mensagem.descricao, 'bottom', false, 8000);
-						} else {
-							return dataService.inativarUltimoPedido(idUsuario,idCliente).then(function(data) {
-								if (data != null && data != '') {
-									ionicToast.show('O pedido ' + data.pedido.idPedido +' foi inativado com sucesso.', 'bottom', false, 2000);
-									$state.go('app.home');
-								} else {
-									ionicToast.show('Não existe pedido ou o último pedido está inativo.', 'bottom', false, 2000);
-								}
-							});
-						}
-					});
-				} else {
-					ionicToast.show('Não existe pedido ou o último pedido está inativo.', 'bottom', false, 5000);
-				}
-			});	
-		}
-
-		function preparaAlterarUltimoPedido(idCliente) {
-			return dataService.preparaAlterarUltimoPedido(idCliente)
-				.then(function(data) {
-					if (data != null && data != '') {
-						flush();
-						
-						localStorageService.set(dataPedidoKey, $filter('date')(data.pedido.dataPedido, 'yyyy/MM/dd', null));
-						localStorageService.set(notesKey, data.pedido.observacao);
-						localStorageService.set(idPedidoKey, data.pedido.idPedido);
-						
-						_.each(data.listaPedidoProduto, function(item) {
-							saveToCart(item, item.qtdSolicitada);
-						});
-						showMyCart();
-					} else {
-						ionicToast.show('Não existe pedido ou o último pedido está inativo.', 'bottom', false, 5000);
-					}
-				});
-		}
-
 		function pesquisar(idCliente, dataPedido) {
 			return dataService.pesquisar(idCliente, dataPedido).then(function(data) {
 				return data;
@@ -218,7 +173,7 @@
 				item.flgAtivo = null;
 				saveToCart(item, item.qtdSolicitada);
 			});
-			showMyCart();
+			showMyCart(data);
 		}
 
 		function inativarPedido(idCliente, idUsuario, data) {

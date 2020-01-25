@@ -7,7 +7,7 @@
 					<label class="item item-input item-stacked-label">
 						<input type="hidden" ng-model="vm.data.idPedido" name="idPedido" />
 						<span class="input-label">Data da Produção</span>
-						<input type="date" name="dataPedido" ng-model="vm.data.dataPedido" required>
+						<input type="date" name="dataPedido" ng-model="vm.data.dataPedido" ng-change="vm.setDate()" required >
 						<p ng-show="deliveryForm.dataPedido.$error.required && deliveryForm.dataPedido.$dirty"
 							class="error-message-card">
 							O campo Data da Produção é obrigatório
@@ -15,7 +15,7 @@
 					</label>
 					<label class="item item-input item-stacked-label">
 						<span class="input-label">Observação</span>
-						<textarea rows="3" ng-model="vm.data.notes" name="notes"></textarea>
+						<textarea rows="3" ng-model="vm.data.notes" ng-blur="vm.setObservacao()" name="notes"></textarea>
 					</label>
 					<button class="button button-small rounded button-stable"
 						style="margin-top: 5px;float: right;width: 140px;" 
@@ -25,13 +25,13 @@
 				</div>
 			</div>
 
-			<ion-item ng-repeat="item in vm.items" class="card" style="height: 30px;margin-top: auto;">
+			<ion-item ng-repeat="item in vm.items" class="cardProduct col">
 				<div ng-click="vm.deleteItem(item)" class="trash" >
 					<i class="ion-trash-a"></i>
 				</div>
 
 				<div ng-click="vm.changeQuantity(item)">
-					<h2 class="text-left" style="font-size: unset; margin-top: 6px;">
+					<h2 class="text-left" style="font-size: smaller; margin-top: 6px;">
 						<strong>{{item.name}}</strong>
 					</h2>
 					<span class="badge badge-warning">{{item.quantity}}</span>

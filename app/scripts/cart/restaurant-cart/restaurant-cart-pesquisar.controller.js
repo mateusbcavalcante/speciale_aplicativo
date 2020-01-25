@@ -37,6 +37,10 @@
 			vm.items = [];
 			restaurantCartService.pesquisar(localStorageService.get('usuarioAutenticado').idCliente, form.dataPedido.$modelValue).then(function(data) {
 				if (data != null && data != '') {
+					var time = new Date(data.pedido.datPedido);
+					var outraData = new Date();
+					outraData.setDate(time.getDate() + 1);
+					data.pedido.datPedido = outraData;
 					vm.items.push(data);
 				} else {
 					ionicToast.show('Não existe pedido para a data selecionada.', 'bottom', false, 8000);

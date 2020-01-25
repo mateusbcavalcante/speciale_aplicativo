@@ -1,10 +1,14 @@
 {
   "name": "Speciale",
-  "app_id": "836cd6ac",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular",
   "proxies": [
     {
       "path": "/speciale_app",
       "proxyUrl": "http://192.168.25.7:8080/spdmws"
     }
-  ]
+  ],
+  "id": "836cd6ac"
 }

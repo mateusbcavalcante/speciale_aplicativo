@@ -229,7 +229,6 @@
                 },
                 data: 'data=' + data
             };
-
             return http_request(request);
         }
 

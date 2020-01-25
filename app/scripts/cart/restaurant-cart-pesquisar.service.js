@@ -41,7 +41,9 @@
 
 		function flush() {
 			cart = [];
-			localStorageService.set(restaurantCartAltKey, cart);
+			cartRemoved = [];
+			localStorageService.set(restaurantCartKey, cart);
+			localStorageService.set(restaurantCartKeyRemoved, cartRemoved);
 		}
 
 		function getAll() {
