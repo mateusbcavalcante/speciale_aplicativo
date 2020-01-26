@@ -174,7 +174,11 @@
         }
 
         function cadastrarPedido(idCliente, idUsuario, idPedido, dataPedido, observacao, listaProduto, listaProdutoRemovido) {
-            console.log(listaProduto);
+
+            if (idPedido == null) {
+                idPedido = 0;
+            }
+            
             return http_post_form_data('/PedidoWS/cadastrar', 'idCliente=' + idCliente
                                                             + '&idUsuario=' + idUsuario
                                                             + '&idPedido=' + idPedido
